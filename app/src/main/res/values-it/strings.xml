@@ -48,5 +48,13 @@
     <string name="runtime_error_dialog_content">Si è verificato un errore di Runtime, assicurarsi di che avere installato pacchetto di webview.</string>
     <string name="copy_log">Copia log</string>
 
+    <string name="theme_pref">Tema</string>
+    <string name="theme_system">Segui il sistema</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="storage_denied">Permesso di archiviazione negato, il download non può partire</string>
+    <string name="dismiss">Chiudi</string>
+    <string name="github_summ_fork">Codice sorgente di questa versione (un fork dell’app originale, GPL-2.0)</string>
+
 </resources>
 

@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/settings" />
 
-    <SwitchPreference
+    <ListPreference
+        android:defaultValue="system"
+        android:entries="@array/theme_entries"
+        android:entryValues="@array/theme_values"
+        android:key="theme_mode"
+        android:summary="%s"
+        android:title="@string/theme_pref"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="fab"
         android:summary="@string/fab_pref_summ"
         android:title="@string/fab_pref" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="save_url"
             android:title="@string/save_url_pref" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="show_exit"
         android:summary="@string/restart_required"
         android:title="@string/exit_pref" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="external_download"
         android:summary="@string/external_download_summ"

@@ -1,3 +1,7 @@
+> **Fork by tugaia56** of the original app by Vojtěch Hořánek (GPL-2.0, abandoned in 2018).
+> What changed: new build system (Gradle, AndroidX, Material Components), Android 8+ and `https`, no more dead libraries (own WebView client, `DownloadManager`, Material bottom bar and dialogs), **dark theme** (follows the system, or choose Light/Dark in Settings; the site header and the status bar become dark too).
+> Application id: `it.tugaia56.apkmirror` (it installs next to the original app).
+
 # APKMirror
 # Now abandoned, please don't report issues or make pull requests, I will ignore them
 

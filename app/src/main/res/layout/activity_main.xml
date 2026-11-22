@@ -5,16 +5,16 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context="cf.vojtechh.apkmirror.activities.MainActivity">
 
-
-    <com.roughike.bottombar.BottomBar
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:bb_showShadow="true"
-        app:bb_tabXmlResource="@xml/navigation" />
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigation" />
 
     <LinearLayout
         android:id="@+id/first_loading_view"
@@ -27,18 +27,18 @@
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="70dp"
             android:layout_marginStart="70dp"
             android:layout_marginTop="16dp"
-            android:maxHeight="130dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@null"
             android:maxWidth="130dp"
-            android:minHeight="130dp"
+            android:maxHeight="130dp"
             android:minWidth="130dp"
+            android:minHeight="130dp"
             android:src="@drawable/splash_image" />
 
         <ProgressBar
-
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,22 +53,21 @@
         android:layout_above="@id/navigation"
         android:visibility="gone">
 
-        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <im.delight.android.webview.AdvancedWebView
+            <WebView
                 android:id="@+id/main_webview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:scrollbarSize="20dp"
                 android:scrollbars="vertical" />
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!--This removes the padding in progress bar-->
 
@@ -77,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_alignParentBottom="true"
-            android:background="#FFFFFF">
+            android:background="?attr/colorSurface">
 
             <ProgressBar
                 android:id="@+id/main_progress_bar"
@@ -89,21 +88,20 @@
 
         </FrameLayout>
 
-
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="4dp"
+            android:contentDescription="@string/search"
             android:src="@drawable/ic_search_black_24dp"
-            android:tint="#FFFFFF"
             android:visibility="gone"
             app:fabSize="normal"
-            tools:ignore="RelativeOverlap"
-            app:useCompatPadding="true"/>
+            app:tint="@color/white"
+            app:useCompatPadding="true"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 
@@ -114,25 +112,22 @@
         android:layout_above="@id/navigation"
         android:visibility="gone">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/settings_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/toolbar_bg"
             android:elevation="8dp"
             app:title="@string/settings"
             app:titleTextColor="#FFFFFF" />
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/settings_fragment_main"
             android:name="cf.vojtechh.apkmirror.fragments.PreferencesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/settings_toolbar"
-            tools:layout="@android:layout/preference_category" />
-
+            android:layout_below="@id/settings_toolbar" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

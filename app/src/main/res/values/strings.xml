@@ -56,5 +56,24 @@
     <string name="clip_error">Error while copying</string>
     <string name="search_error">Error while getting text from search dialog</string>
 
+    <string name="theme_pref">Theme</string>
+    <string name="theme_system">Follow the system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="storage_denied">Storage permission denied, the download cannot start</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="github_summ_fork">Source code of this version (a fork of the original app, GPL-2.0)</string>
+
+    <string-array name="theme_entries">
+        <item>@string/theme_system</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </string-array>
+    <string-array name="theme_values" translatable="false">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
 </resources>
 
