@@ -27,7 +27,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         Preference github = findPreference("github");
         Preference libs = findPreference("libs");
-        Preference xda = findPreference("xda");
         ListPreference theme = findPreference("theme_mode");
         ListPreference language = findPreference("language");
 
@@ -82,14 +81,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             + "pre{background-color:#2a2a2a;color:#eeeeee;padding:1em;white-space:pre-wrap;}");
                 }
                 builder.build().show();
-                return true;
-            });
-        }
-
-        if (xda != null) {
-            xda.setOnPreferenceClickListener(pref -> {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://forum.xda-developers.com/android/apps-games/apkmirror-web-app-t3450564")));
                 return true;
             });
         }

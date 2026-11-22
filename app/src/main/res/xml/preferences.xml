@@ -57,10 +57,6 @@
         android:summary="@string/lib_summ"
         android:title="@string/libraries" />
 
-    <Preference
-        android:key="xda"
-        android:summary="@string/xda_summ"
-        android:title="@string/thread" />
 
 
     <PreferenceCategory android:title="@string/with_thanks" />
