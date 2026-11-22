@@ -6,3 +6,6 @@
 app/build/
 .DS_Store
 *.apk
+*.jks
+*.keystore
+keystore.properties

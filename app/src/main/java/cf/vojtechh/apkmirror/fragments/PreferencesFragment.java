@@ -69,11 +69,19 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 notices.addNotice(new Notice("LicensesDialog", "http://psdev.de",
                         "Copyright 2013 Philip Schiffer <admin@psdev.de>", new ApacheSoftwareLicense20()));
 
-                new LicensesDialog.Builder(requireActivity())
+                LicensesDialog.Builder builder = new LicensesDialog.Builder(requireActivity())
                         .setNotices(notices)
-                        .setTitle(getString(R.string.libraries))
-                        .build()
-                        .show();
+                        .setTitle(getString(R.string.libraries));
+                boolean night = (getResources().getConfiguration().uiMode
+                        & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                        == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+                if (night) {
+                    // dark page inside the dialog (the library draws a white one by default)
+                    builder.setNoticesCssStyle("body{padding:0;margin:0;background-color:#424242;color:#eeeeee;}"
+                            + "a{color:#ff8b14;}"
+                            + "pre{background-color:#2a2a2a;color:#eeeeee;padding:1em;white-space:pre-wrap;}");
+                }
+                builder.build().show();
                 return true;
             });
         }
