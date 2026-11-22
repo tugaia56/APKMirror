@@ -75,5 +75,13 @@
         <item>dark</item>
     </string-array>
 
+    <string name="language_pref">Language</string>
+    <string name="language_system">System default</string>
+
+    <string name="menu_all_developers">All Developers</string>
+    <string name="menu_all_categories">All Categories</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_contact">Contact</string>
+    <string name="menu_premium">Premium</string>
 </resources>
 

@@ -43,4 +43,9 @@
     <string name="runtime_error_dialog_content">Vyskytla sa chyba, uistite sa, že máte nainštalový balíček webview.</string>
     <string name="copy_log">Kopírovať záznam</string>
 
+    <string name="menu_all_developers">Všetci vývojári</string>
+    <string name="menu_all_categories">Všetky kategórie</string>
+    <string name="menu_faq">Často kladené otázky</string>
+    <string name="menu_contact">Kontakt</string>
+    <string name="menu_premium">Premium</string>
 </resources>

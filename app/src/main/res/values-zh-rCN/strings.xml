@@ -41,4 +41,9 @@
     <string name="runtime_error_dialog_content">运行时发生错误，请确认你的网络正常。</string>
     <string name="copy_log">复制log</string>
 
-  </resources>
+      <string name="menu_all_developers">所有开发者</string>
+    <string name="menu_all_categories">所有类别</string>
+    <string name="menu_faq">常见问题</string>
+    <string name="menu_contact">联系我们</string>
+    <string name="menu_premium">高级版</string>
+</resources>

@@ -40,4 +40,9 @@
     <string name="external_download_summ">Apk indirmek için gelişmiş İndirme Yöneticisi (ADM) ya da indirme hızlandırıcısı gibi uygulamalar kullanın</string>
     <string name="external_download_pref">Harici indirici kullan</string>
 
+    <string name="menu_all_developers">Tüm geliştiriciler</string>
+    <string name="menu_all_categories">Tüm kategoriler</string>
+    <string name="menu_faq">SSS</string>
+    <string name="menu_contact">İletişim</string>
+    <string name="menu_premium">Premium</string>
 </resources>

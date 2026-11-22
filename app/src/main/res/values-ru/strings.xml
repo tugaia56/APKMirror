@@ -48,5 +48,10 @@
     <string name="runtime_error_dialog_content">Произошла ошибка WebView пожалуйста обновите WebView.</string>
     <string name="copy_log">Скопировать журнал</string>
 
+    <string name="menu_all_developers">Все разработчики</string>
+    <string name="menu_all_categories">Все категории</string>
+    <string name="menu_faq">Вопросы и ответы</string>
+    <string name="menu_contact">Контакты</string>
+    <string name="menu_premium">Премиум</string>
 </resources>
 

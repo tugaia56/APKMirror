@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -22,11 +23,26 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
+        noIconSpace(getPreferenceScreen());
 
         Preference github = findPreference("github");
         Preference libs = findPreference("libs");
         Preference xda = findPreference("xda");
         ListPreference theme = findPreference("theme_mode");
+        ListPreference language = findPreference("language");
+
+        if (language != null) {
+            // show the language that is really in use (the system may have changed it from its own settings)
+            androidx.core.os.LocaleListCompat current = AppCompatDelegate.getApplicationLocales();
+            language.setValue(current.isEmpty() ? "system" : matchTag(current.toLanguageTags(), language));
+            language.setOnPreferenceChangeListener((pref, newValue) -> {
+                String tag = String.valueOf(newValue);
+                AppCompatDelegate.setApplicationLocales("system".equals(tag)
+                        ? androidx.core.os.LocaleListCompat.getEmptyLocaleList()
+                        : androidx.core.os.LocaleListCompat.forLanguageTags(tag));
+                return true;
+            });
+        }
 
         if (theme != null) {
             theme.setOnPreferenceChangeListener((pref, newValue) -> {
@@ -69,5 +85,25 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return true;
             });
         }
+    }
+
+    /** No empty column on the left: the preferences have no icons. */
+    private static void noIconSpace(androidx.preference.PreferenceGroup group) {
+        group.setIconSpaceReserved(false);
+        for (int i = 0; i < group.getPreferenceCount(); i++) {
+            Preference p = group.getPreference(i);
+            p.setIconSpaceReserved(false);
+            if (p instanceof androidx.preference.PreferenceGroup) noIconSpace((androidx.preference.PreferenceGroup) p);
+        }
+    }
+
+    /** The saved tag ("it-IT", "pt-BR"...) -> the closest value of the list ("it", "pt-BR"). */
+    private static String matchTag(String tags, ListPreference list) {
+        String first = tags.split(",")[0];
+        CharSequence[] values = list.getEntryValues();
+        for (CharSequence v : values) if (v.toString().equalsIgnoreCase(first)) return v.toString();
+        String lang = first.split("-")[0];
+        for (CharSequence v : values) if (v.toString().equalsIgnoreCase(lang)) return v.toString();
+        return "system";
     }
 }

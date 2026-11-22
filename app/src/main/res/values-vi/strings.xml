@@ -43,5 +43,10 @@
     <string name="runtime_error_dialog_content">Đã xảy ra lỗi,chắc chắn rằng bạn đã cài đặt gói webview.</string>
     <string name="copy_log">Sao chép log</string>
 
+    <string name="menu_all_developers">Tất cả nhà phát triển</string>
+    <string name="menu_all_categories">Tất cả danh mục</string>
+    <string name="menu_faq">Câu hỏi thường gặp</string>
+    <string name="menu_contact">Liên hệ</string>
+    <string name="menu_premium">Premium</string>
 </resources>
 

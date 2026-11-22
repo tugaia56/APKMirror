@@ -46,4 +46,9 @@
     <string name="runtime_error_dialog_content">Futtatási hiba történt, győződjön meg róla, hogy telepítve van a webview csomag.</string>
     <string name="copy_log">Napló másolása</string>
     
+    <string name="menu_all_developers">Összes fejlesztő</string>
+    <string name="menu_all_categories">Összes kategória</string>
+    <string name="menu_faq">GYIK</string>
+    <string name="menu_contact">Kapcsolat</string>
+    <string name="menu_premium">Prémium</string>
 </resources>

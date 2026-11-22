@@ -35,5 +35,10 @@
     <string name="runtime_error_dialog_content">حدث خطأ وقت التشغيل، تأكد من تثبيت حزمة webview.</string>
     <string name="copy_log">نسح سجل الاخطاء</string>
 
+    <string name="menu_all_developers">جميع المطورين</string>
+    <string name="menu_all_categories">جميع الفئات</string>
+    <string name="menu_faq">الأسئلة الشائعة</string>
+    <string name="menu_contact">اتصل بنا</string>
+    <string name="menu_premium">بريميوم</string>
 </resources>
 

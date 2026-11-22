@@ -44,5 +44,10 @@
     <string name="runtime_error_dialog_content">Se produjo un error de tiempo de ejecución, asegúrese de tener instalado el paquete de webview.</string>
     <string name="copy_log">Copiar registro</string>
 
+    <string name="menu_all_developers">Todos los desarrolladores</string>
+    <string name="menu_all_categories">Todas las categorías</string>
+    <string name="menu_faq">Preguntas frecuentes</string>
+    <string name="menu_contact">Contacto</string>
+    <string name="menu_premium">Premium</string>
 </resources>
 

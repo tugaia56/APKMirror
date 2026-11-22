@@ -37,5 +37,10 @@
     <string name="external_download_summ">Benutze Apps wie ADM oder Download Accelerator um APKs herunterzuladen</string>
     <string name="external_download_pref">Benutze eine externe Download App</string>
 
+    <string name="menu_all_developers">Alle Entwickler</string>
+    <string name="menu_all_categories">Alle Kategorien</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_contact">Kontakt</string>
+    <string name="menu_premium">Premium</string>
 </resources>
 

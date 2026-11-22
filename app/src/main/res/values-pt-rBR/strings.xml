@@ -43,4 +43,9 @@
     <string name="runtime_error_dialog_content">Um erro de tempo de execução ocorreu, verifique se você tem um pacote WebView instalado.</string>
     <string name="copy_log">Copiar registros</string>
 
+    <string name="menu_all_developers">Todos os desenvolvedores</string>
+    <string name="menu_all_categories">Todas as categorias</string>
+    <string name="menu_faq">Perguntas frequentes</string>
+    <string name="menu_contact">Contato</string>
+    <string name="menu_premium">Premium</string>
 </resources>

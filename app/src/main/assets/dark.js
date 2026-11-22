@@ -15,6 +15,8 @@
     var style = document.createElement('style');
     style.id = 'apkm-dark-fix';
     style.textContent = '.accent_bg.site-header-contents{background-color:' + HEADER_BG + '!important}'
+        + '#mobile-slide-header.accent_bg{background-color:' + HEADER_BG + '!important}'
+        + '.searchbox-parent.accent_bg{background-color:' + HEADER_BG + '!important}'   // search icon: white on the dark header (it must stay opaque: it covers the title when the search field opens)
         + 'html,body{background-color:' + PAGE_BG + '!important}';
     (document.head || document.documentElement).appendChild(style);
 

@@ -135,7 +135,19 @@ public class MainActivity extends AppCompatActivity {
             Intent link = getIntent();
             Uri data = link.getData();
 
-            if (data != null) {
+            String savedUrl = savedInstanceState == null ? null : savedInstanceState.getString("url");
+            boolean savedSettings = savedInstanceState != null && savedInstanceState.getBoolean("settings", false);
+
+            if (savedUrl != null) {
+                //the activity was recreated (theme or language changed): come back to the same page
+                url = savedUrl;
+                if (savedSettings) {
+                    triggerAction = false;
+                    navigation.setSelectedItemId(R.id.navigation_settings);
+                    crossFade(webContainer, settingsLayoutFragment);
+                    settingsShortcut = true;
+                }
+            } else if (data != null) {
                 //App was opened from browser
                 url = data.toString();
             } else {
@@ -278,6 +290,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String current = webView == null ? null : webView.getUrl();
+        if (current != null) outState.putString("url", current);
+        outState.putBoolean("settings", settingsLayoutFragment != null
+                && settingsLayoutFragment.getVisibility() == View.VISIBLE);
     }
 
     @Override
@@ -518,6 +539,36 @@ public class MainActivity extends AppCompatActivity {
         if (!darkScript.isEmpty()) view.evaluateJavascript(darkScript, null);
     }
 
+    private String readAsset(String name) {
+        try (java.io.InputStream in = getAssets().open(name);
+             java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream()) {
+            byte[] buf = new byte[4096];
+            int n;
+            while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+            return out.toString("UTF-8");
+        } catch (java.io.IOException e) {
+            return "";
+        }
+    }
+
+    private String translateScript;
+
+    /** Texts of the site (side menu) shown in the language of the app. */
+    private void injectTranslations(WebView view) {
+        if (translateScript == null) translateScript = readAsset("translate.js");
+        if (translateScript.isEmpty()) return;
+        try {
+            org.json.JSONObject map = new org.json.JSONObject();
+            map.put("All Developers", getString(R.string.menu_all_developers));
+            map.put("All Categories", getString(R.string.menu_all_categories));
+            map.put("FAQ", getString(R.string.menu_faq));
+            map.put("Contact", getString(R.string.menu_contact));
+            map.put("Premium", getString(R.string.menu_premium));
+            view.evaluateJavascript(translateScript + "(" + map + ")", null);
+        } catch (org.json.JSONException ignored) {
+        }
+    }
+
     private boolean isApkMirrorHost(Uri uri) {
         String host = uri.getHost();
         return host != null && (host.equals("apkmirror.com") || host.endsWith(".apkmirror.com"));
@@ -576,6 +627,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             injectDarkHeader(view);
+            injectTranslations(view);
 
             progressBarContainer.animate()
                     .alpha(0f)

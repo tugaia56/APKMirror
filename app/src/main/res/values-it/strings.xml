@@ -56,5 +56,13 @@
     <string name="dismiss">Chiudi</string>
     <string name="github_summ_fork">Codice sorgente di questa versione (un fork dell’app originale, GPL-2.0)</string>
 
+    <string name="language_pref">Lingua</string>
+    <string name="language_system">Predefinita di sistema</string>
+
+    <string name="menu_all_developers">Tutti gli sviluppatori</string>
+    <string name="menu_all_categories">Tutte le categorie</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_contact">Contatti</string>
+    <string name="menu_premium">Premium</string>
 </resources>
 
