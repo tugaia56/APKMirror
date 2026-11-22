@@ -499,13 +499,23 @@ public class MainActivity extends AppCompatActivity {
                 == Configuration.UI_MODE_NIGHT_YES;
     }
 
-    /** Dark theme: the orange header of the site (search bar and breadcrumbs) becomes dark like the app bars. */
+    private String darkScript;
+
+    /** Dark theme: assets/dark.js sets the page background (#121212), the lighter cards and the dark site header. */
     private void injectDarkHeader(WebView view) {
         if (!isNight()) return;
-        view.evaluateJavascript("(function(){if(document.getElementById('apkm-dark-fix'))return;"
-                + "var s=document.createElement('style');s.id='apkm-dark-fix';"
-                + "s.textContent='.accent_bg.site-header-contents{background-color:#1e1e1e!important}';"
-                + "(document.head||document.documentElement).appendChild(s);})()", null);
+        if (darkScript == null) {
+            try (java.io.InputStream in = getAssets().open("dark.js");
+                 java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream()) {
+                byte[] buf = new byte[4096];
+                int n;
+                while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+                darkScript = out.toString("UTF-8");
+            } catch (java.io.IOException e) {
+                darkScript = "";
+            }
+        }
+        if (!darkScript.isEmpty()) view.evaluateJavascript(darkScript, null);
     }
 
     private boolean isApkMirrorHost(Uri uri) {
