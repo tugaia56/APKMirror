@@ -11,6 +11,8 @@
     var CARD_BG_3 = '%CARD_BG_3%';  // other light greys
     var HEADER_BG = '%HEADER_BG%';  // site header (search bar and breadcrumbs)
     var ACCENT = '%ACCENT%';        // accent: the orange of the site and the blue-greys of the texts
+    var INFO = '%INFO%';            // circle of the (i) icons (the accent when they are active)
+    var INFO_GLYPH = '#FFFFFF';     // the "i" inside the circle
 
     // Colours of the site (as in the page CSS) that become the accent
     var ACCENT_TEXT = {'rgb(255, 139, 20)': 1, 'rgb(83, 109, 121)': 1, 'rgb(167, 181, 204)': 1};
@@ -24,6 +26,9 @@
     style.textContent = '.accent_bg.site-header-contents{background-color:' + HEADER_BG + '!important}'
         + '#mobile-slide-header.accent_bg{background-color:' + HEADER_BG + '!important}'
         + '.searchbox-parent.accent_bg{background-color:' + HEADER_BG + '!important}'   // opaque: it covers the title when the search field opens
+        + '.infoLink,.infoLink:focus,.infoLink:active,.infoLink:focus-visible,.info-icon{outline:none!important;box-shadow:none!important;border:0!important;-webkit-tap-highlight-color:transparent!important}'   // no frame when the (i) is touched
+        + '.info-icon{fill:' + INFO + '!important;color:' + INFO + '!important}'
+        + '.info-icon.accent_color{fill:' + ACCENT + '!important;color:' + ACCENT + '!important}'
         + 'html,body{background-color:' + PAGE_BG + '!important}';
     (document.head || document.documentElement).appendChild(style);
 
@@ -58,7 +63,17 @@
         e.style.setProperty('background-color', target, 'important');
     }
 
+    // The (i) icon is one path: a circle with the "i" cut out. Split it: circle (coloured by CSS) + "i" always white
+    function fixInfoSymbol() {
+        var sym = document.getElementById('apkm-icon-info');
+        if (!sym || sym.getAttribute('data-apkm')) return;
+        sym.setAttribute('data-apkm', '1');
+        sym.innerHTML = '<path d="M11.675-0.050c-5.775 0-11.7 5.775-11.7 12.325 0 7.075 5.925 11.7 11.7 11.7 7.125 0 12.3-4.625 12.3-11.7 0-6.55-5.175-12.325-12.3-12.325v0z"></path>'
+            + '<path fill="' + INFO_GLYPH + '" d="M13.025 18.025h-2.65v-7.1h2.65v7.1zM13.025 8.325h-2.65v-2.6h2.65v2.6z"></path>';
+    }
+
     function fixTree(root) {
+        fixInfoSymbol();
         fixOne(root);
         if (!root.querySelectorAll) return;
         var all = root.querySelectorAll('*');

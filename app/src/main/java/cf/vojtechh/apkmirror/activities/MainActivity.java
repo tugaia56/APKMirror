@@ -521,6 +521,12 @@ public class MainActivity extends AppCompatActivity {
                 == Configuration.UI_MODE_NIGHT_YES;
     }
 
+    /** CSS colour with alpha (the ripple colour of the Theme is translucent). */
+    private String rgba(int colorRes) {
+        int c = ContextCompat.getColor(this, colorRes);
+        return String.format(java.util.Locale.US, "rgba(%d,%d,%d,%.3f)", Color.red(c), Color.green(c), Color.blue(c), Color.alpha(c) / 255f);
+    }
+
     private String hex(int colorRes) {
         return String.format("#%06X", ContextCompat.getColor(this, colorRes) & 0xFFFFFF);
     }
@@ -557,7 +563,8 @@ public class MainActivity extends AppCompatActivity {
                     .replace("%CARD_BG_2%", hex(R.color.card_bg_2))
                     .replace("%CARD_BG_3%", hex(R.color.card_bg_3))
                     .replace("%HEADER_BG%", hex(R.color.header_bg))
-                    .replace("%ACCENT%", hex(R.color.colorPrimary));
+                    .replace("%ACCENT%", hex(R.color.colorPrimary))
+                    .replace("%INFO%", rgba(R.color.info_icon));
             view.evaluateJavascript(script, null);
         }
     }

@@ -15,5 +15,6 @@
     <color name="card_bg_3">#2A2A2A</color>
     <color name="header_bg">#1E1E1E</color>
     <color name="bars_bg">#121212</color>
+    <color name="info_icon">#747474</color>
     <color name="dialog_bg">#424242</color>
 </resources>
