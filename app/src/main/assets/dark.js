@@ -1,14 +1,14 @@
 // Dark theme for apkmirror.com (runs in the WebView only when the app is dark).
-// Colours: change them here.
+// Colours: the app fills the %NAMES% from its colour resources (page_bg, card_bg, card_bg_2, card_bg_3, header_bg in res/values/colors.xml).
 (function () {
     if (window.__apkmDark) return;
     window.__apkmDark = true;
 
-    var PAGE_BG = '#121212';    // page background (behind the cards)
-    var CARD_BG = '#1E1E1E';    // cards, lists, panels (lighter than the page)
-    var CARD_BG_2 = '#242424';  // slightly grey light areas (stripes, hover rows, inputs)
-    var CARD_BG_3 = '#2A2A2A';  // other light greys
-    var HEADER_BG = '#1E1E1E';  // site header (search bar and breadcrumbs)
+    var PAGE_BG = '%PAGE_BG%';    // page background (behind the cards)
+    var CARD_BG = '%CARD_BG%';    // cards, lists, panels (lighter than the page)
+    var CARD_BG_2 = '%CARD_BG_2%';  // slightly grey light areas (stripes, hover rows, inputs)
+    var CARD_BG_3 = '%CARD_BG_3%';  // other light greys
+    var HEADER_BG = '%HEADER_BG%';  // site header (search bar and breadcrumbs)
 
     var SKIP = {IMG: 1, VIDEO: 1, CANVAS: 1, IFRAME: 1, INS: 1, SVG: 1, PATH: 1, SCRIPT: 1, STYLE: 1, HEAD: 1, META: 1, LINK: 1};
 

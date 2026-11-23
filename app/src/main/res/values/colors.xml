@@ -8,4 +8,11 @@
     <color name="surface_dark">#1E1E1E</color>
     <color name="inactive_icon">#747474</color>
     <color name="toolbar_bg">#FF8B14</color>
+    <!-- dark theme colours (page, cards...): also used by assets/dark.js. The Oxydian Theme overlay replaces them -->
+    <color name="page_bg">#121212</color>
+    <color name="card_bg">#1E1E1E</color>
+    <color name="card_bg_2">#242424</color>
+    <color name="card_bg_3">#2A2A2A</color>
+    <color name="header_bg">#1E1E1E</color>
+    <color name="dialog_bg">#424242</color>
 </resources>

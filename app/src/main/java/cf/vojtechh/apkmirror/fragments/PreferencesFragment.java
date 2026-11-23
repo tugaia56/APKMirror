@@ -76,14 +76,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         == android.content.res.Configuration.UI_MODE_NIGHT_YES;
                 if (night) {
                     // dark page inside the dialog (the library draws a white one by default)
-                    builder.setNoticesCssStyle("body{padding:0;margin:0;background-color:#424242;color:#eeeeee;}"
-                            + "a{color:#ff8b14;}"
-                            + "pre{background-color:#2a2a2a;color:#eeeeee;padding:1em;white-space:pre-wrap;}");
+                    builder.setNoticesCssStyle("body{padding:0;margin:0;background-color:" + hex(R.color.dialog_bg) + ";color:#eeeeee;}"
+                            + "a{color:" + hex(R.color.colorPrimary) + ";}"
+                            + "pre{background-color:" + hex(R.color.card_bg_3) + ";color:#eeeeee;padding:1em;white-space:pre-wrap;}");
                 }
                 builder.build().show();
                 return true;
             });
         }
+    }
+
+    private String hex(int colorRes) {
+        return String.format("#%06X", androidx.core.content.ContextCompat.getColor(requireContext(), colorRes) & 0xFFFFFF);
     }
 
     /** No empty column on the left: the preferences have no icons. */

@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int APKMIRROR_ORANGE = Color.parseColor("#FF8B14");
 
     private int shortAnimDuration;
-    private int previsionThemeColor = APKMIRROR_ORANGE;
+    private int previsionThemeColor = APKMIRROR_ORANGE; // set to defaultColor() in onCreate
 
     private SharedPreferences sharedPreferences;
 
@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             shortAnimDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
             initNavigation();
-            applyNavigationColor(APKMIRROR_ORANGE);
+            previsionThemeColor = defaultColor();
+            applyNavigationColor(previsionThemeColor);
 
             boolean saveUrl = sharedPreferences.getBoolean("save_url", false);
 
@@ -499,8 +500,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (isNight()) {
             // dark theme: dark status bar (same colour as the header of the site)
-            clr = Color.parseColor("#1E1E1E");
-        } else if (color != APKMIRROR_ORANGE) {
+            clr = ContextCompat.getColor(this, R.color.header_bg);
+        } else if (usePageColor() && color != APKMIRROR_ORANGE) {
             float[] hsv = new float[3];
             Color.colorToHSV(color, hsv);
             hsv[2] *= 0.8f;
@@ -520,6 +521,19 @@ public class MainActivity extends AppCompatActivity {
                 == Configuration.UI_MODE_NIGHT_YES;
     }
 
+    private String hex(int colorRes) {
+        return String.format("#%06X", ContextCompat.getColor(this, colorRes) & 0xFFFFFF);
+    }
+
+    /** Colour of the bars when the page gives none (or when the Theme overlay asks to ignore the page colour). */
+    private int defaultColor() {
+        return ContextCompat.getColor(this, R.color.colorPrimary);
+    }
+
+    private boolean usePageColor() {
+        return getResources().getBoolean(R.bool.use_page_color);
+    }
+
     private String darkScript;
 
     /** Dark theme: assets/dark.js sets the page background (#121212), the lighter cards and the dark site header. */
@@ -536,7 +550,15 @@ public class MainActivity extends AppCompatActivity {
                 darkScript = "";
             }
         }
-        if (!darkScript.isEmpty()) view.evaluateJavascript(darkScript, null);
+        if (!darkScript.isEmpty()) {
+            String script = darkScript
+                    .replace("%PAGE_BG%", hex(R.color.page_bg))
+                    .replace("%CARD_BG%", hex(R.color.card_bg))
+                    .replace("%CARD_BG_2%", hex(R.color.card_bg_2))
+                    .replace("%CARD_BG_3%", hex(R.color.card_bg_3))
+                    .replace("%HEADER_BG%", hex(R.color.header_bg));
+            view.evaluateJavascript(script, null);
+        }
     }
 
     private String readAsset(String name) {
@@ -647,8 +669,8 @@ public class MainActivity extends AppCompatActivity {
             // the colour of the page (meta theme-color) tints the status bar, the bottom bar and the buttons
             view.evaluateJavascript("(function(){var m=document.querySelector('meta[name=theme-color]');"
                     + "return m?m.getAttribute('content'):'';})()", value -> {
-                int color = APKMIRROR_ORANGE;
-                if (value != null) {
+                int color = defaultColor();
+                if (value != null && usePageColor()) {
                     String c = value.replace("\"", "").trim();
                     if (!c.isEmpty() && !c.equals("null")) {
                         try {

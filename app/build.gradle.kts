@@ -19,8 +19,8 @@ android {
         minSdk = 26
         // 34 on purpose: the app is not edge-to-edge yet (Android 15 forces it from target 35)
         targetSdk = 34
-        versionName = "4.0"
-        versionCode = 40000
+        versionName = "4.1"
+        versionCode = 40100
     }
 
     compileOptions {
