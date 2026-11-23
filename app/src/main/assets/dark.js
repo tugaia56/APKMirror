@@ -1,5 +1,6 @@
 // Dark theme for apkmirror.com (runs in the WebView only when the app is dark).
-// Colours: the app fills the %NAMES% from its colour resources (page_bg, card_bg, card_bg_2, card_bg_3, header_bg in res/values/colors.xml).
+// Colours: the app fills the %NAMES% from its colour resources (page_bg, card_bg, card_bg_2, card_bg_3, header_bg, colorPrimary
+// in res/values/colors.xml); the Oxydian Theme overlay replaces them.
 (function () {
     if (window.__apkmDark) return;
     window.__apkmDark = true;
@@ -9,6 +10,12 @@
     var CARD_BG_2 = '%CARD_BG_2%';  // slightly grey light areas (stripes, hover rows, inputs)
     var CARD_BG_3 = '%CARD_BG_3%';  // other light greys
     var HEADER_BG = '%HEADER_BG%';  // site header (search bar and breadcrumbs)
+    var ACCENT = '%ACCENT%';        // accent: the orange of the site and the blue-greys of the texts
+
+    // Colours of the site (as in the page CSS) that become the accent
+    var ACCENT_TEXT = {'rgb(255, 139, 20)': 1, 'rgb(83, 109, 121)': 1, 'rgb(167, 181, 204)': 1};
+    var ACCENT_BG = {'rgb(255, 139, 20)': 1, 'rgb(247, 105, 18)': 1, 'rgb(248, 139, 24)': 1, 'rgb(83, 109, 121)': 1};
+    var ACCENT_FILL = {'rgb(255, 139, 20)': 1, 'rgb(248, 139, 24)': 1, 'rgb(83, 109, 121)': 1};
 
     var SKIP = {IMG: 1, VIDEO: 1, CANVAS: 1, IFRAME: 1, INS: 1, SVG: 1, PATH: 1, SCRIPT: 1, STYLE: 1, HEAD: 1, META: 1, LINK: 1};
 
@@ -16,7 +23,7 @@
     style.id = 'apkm-dark-fix';
     style.textContent = '.accent_bg.site-header-contents{background-color:' + HEADER_BG + '!important}'
         + '#mobile-slide-header.accent_bg{background-color:' + HEADER_BG + '!important}'
-        + '.searchbox-parent.accent_bg{background-color:' + HEADER_BG + '!important}'   // search icon: white on the dark header (it must stay opaque: it covers the title when the search field opens)
+        + '.searchbox-parent.accent_bg{background-color:' + HEADER_BG + '!important}'   // opaque: it covers the title when the search field opens
         + 'html,body{background-color:' + PAGE_BG + '!important}';
     (document.head || document.documentElement).appendChild(style);
 
@@ -29,9 +36,23 @@
     }
 
     function fixOne(e) {
-        if (!e || e.nodeType !== 1 || SKIP[e.tagName]) return;
+        if (!e || e.nodeType !== 1) return;
+        var tag = e.tagName.toUpperCase();
         if (e === document.body || e === document.documentElement) return;
-        var l = lightness(getComputedStyle(e).backgroundColor);
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'HEAD' || tag === 'META' || tag === 'LINK') return;
+        var cs = getComputedStyle(e);
+
+        // accent: text, icons (svg) and backgrounds that use the orange / blue-grey of the site
+        if (ACCENT_TEXT[cs.color]) e.style.setProperty('color', ACCENT, 'important');
+        if (ACCENT_FILL[cs.fill]) e.style.setProperty('fill', ACCENT, 'important');
+        var bg = cs.backgroundColor;
+        if (ACCENT_BG[bg]) {
+            e.style.setProperty('background-color', ACCENT, 'important');
+            return;
+        }
+
+        if (SKIP[tag]) return;
+        var l = lightness(bg);
         if (l === null || l < 190) return;
         var target = l >= 250 ? CARD_BG : (l >= 225 ? CARD_BG_2 : CARD_BG_3);
         e.style.setProperty('background-color', target, 'important');

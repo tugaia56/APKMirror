@@ -500,7 +500,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (isNight()) {
             // dark theme: dark status bar (same colour as the header of the site)
-            clr = ContextCompat.getColor(this, R.color.header_bg);
+            clr = ContextCompat.getColor(this, R.color.bars_bg);
         } else if (usePageColor() && color != APKMIRROR_ORANGE) {
             float[] hsv = new float[3];
             Color.colorToHSV(color, hsv);
@@ -556,7 +556,8 @@ public class MainActivity extends AppCompatActivity {
                     .replace("%CARD_BG%", hex(R.color.card_bg))
                     .replace("%CARD_BG_2%", hex(R.color.card_bg_2))
                     .replace("%CARD_BG_3%", hex(R.color.card_bg_3))
-                    .replace("%HEADER_BG%", hex(R.color.header_bg));
+                    .replace("%HEADER_BG%", hex(R.color.header_bg))
+                    .replace("%ACCENT%", hex(R.color.colorPrimary));
             view.evaluateJavascript(script, null);
         }
     }
