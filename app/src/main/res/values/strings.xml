@@ -19,6 +19,9 @@
     <string name="download_started">Download started…</string>
     <string name="search">Search</string>
     <string name="github" translatable="false">GitHub</string>
+    <string name="version">Version</string>
+    <string name="updates">Check for updates</string>
+    <string name="updates_summ">Opens the releases page of this version on GitHub</string>
     <string name="about">About</string>
 
     <string name="fab_pref_summ">Disabling this will hide the search floating action button (restart is required in order to change this settings)</string>

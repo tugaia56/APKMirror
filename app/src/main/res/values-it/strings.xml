@@ -15,6 +15,9 @@
     <string name="libraries">Librerie</string>
     <string name="download_started">Download iniziato…</string>
     <string name="search">Cerca</string>
+    <string name="version">Versione</string>
+    <string name="updates">Cerca aggiornamenti</string>
+    <string name="updates_summ">Apre la pagina delle versioni su GitHub</string>
     <string name="about">Info</string>
 
     <string name="fab_pref_summ">Disabilitando questo nasconderà la il FAB di ricerca (per cambiare questa impostazione, è necessario riavviare)</string>

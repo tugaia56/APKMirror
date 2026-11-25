@@ -48,6 +48,16 @@
     <PreferenceCategory android:title="@string/about" />
 
     <Preference
+        android:key="version"
+        android:selectable="false"
+        android:title="@string/version" />
+
+    <Preference
+        android:key="updates"
+        android:summary="@string/updates_summ"
+        android:title="@string/updates" />
+
+    <Preference
         android:key="github"
         android:summary="@string/github_summ"
         android:title="@string/github" />

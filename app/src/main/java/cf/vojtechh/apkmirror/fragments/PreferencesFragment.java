@@ -27,6 +27,20 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         Preference github = findPreference("github");
         Preference libs = findPreference("libs");
+        Preference version = findPreference("version");
+        if (version != null) {
+            try {
+                version.setSummary(requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0).versionName);
+            } catch (Exception ignored) {
+            }
+        }
+        Preference updates = findPreference("updates");
+        if (updates != null) {
+            updates.setOnPreferenceClickListener(pref -> {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tugaia56/APKMirror/releases/latest")));
+                return true;
+            });
+        }
         ListPreference theme = findPreference("theme_mode");
         ListPreference language = findPreference("language");
 
